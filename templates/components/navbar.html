@@ -1,0 +1,50 @@
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 mt-2 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
+    <div class="container-fluid py-1 px-3">
+
+        <!-- Kasir button -->
+        <!-- <a href="#" class="btn bg-gradient-warning">
+            <i class="ni ni-cart me-2"></i>
+            <span class="d-sm-inline d-none">Sample Button</span>
+        </a> -->
+        <!-- End Kasir button -->
+
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
+            <ul class="navbar-nav justify-content-end">
+
+                <!-- User profile -->
+                <li class="nav-item dropdown px-3">
+                    <a class="nav-link dropdown-toggle font-weight-bold text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user me-sm-1 fs-5"></i>
+                        Admin
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!-- <li><a class="dropdown-item fs-6" href="#">Akun saya</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li> -->
+                        <li><a class="dropdown-item fs-6" href="{{url_for('logout')}}">Logout</a></li>
+                    </ul>
+                </li>
+                <!-- End User profile -->
+
+                <!-- Navbar toggle button (in mobile view) -->
+                <li class="nav-item d-xl-none px-3 d-flex align-items-center">
+                    <a class="fs-6 nav-link p-0 text-white" id="iconNavbarSidenav">
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                            <i class="sidenav-toggler-line bg-white"></i>
+                        </div>
+                    </a>
+                </li>
+                <!-- End Navbar toggle button -->
+                
+                {% with daftar_notifikasi=data['notifikasi']  %}
+                {% include "components/notifikasi.html" %}
+                {% endwith %}
+
+            </ul>
+        </div>
+    </div>
+</nav>

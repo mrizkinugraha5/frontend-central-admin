@@ -1,0 +1,38 @@
+.content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+ul > li {
+    margin: 0px 8px;
+}
+
+#main_icon {
+    width: 80%;
+}
+
+#main_decor {
+    width: 50%;
+    position: relative;
+    top: 45px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(15px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+.bg-parralax {
+    background-image: url("/static/img/background/parralax.png");
+    background-attachment: fixed;
+    background-size: cover;
+}

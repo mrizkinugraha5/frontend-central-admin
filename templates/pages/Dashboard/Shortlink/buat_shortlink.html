@@ -1,0 +1,32 @@
+{% extends "layout/template-dashboard.html" %}
+{% block content %}
+<div class="row mb-4">
+      <div class="col">
+            <div class="card">
+                  <div class="card-body p-5">
+                        <div class="text-center">
+                              <h3>Create Shortlink</h3>
+                        </div>
+                        <form class="row g-4">
+                              <div class="col-lg-8">
+                                    <label for="link_asli" class="form-label">Destination</label>
+                                    <input type="text" class="form-control" placeholder="Input Long URL" id="link_asli">
+                              </div>
+
+                              <div class="col-lg-8">
+                                    <label for="link_shorten" class="form-label">Link Shorten</label>
+                                    <input type="text" class="form-control" id="link_shorten">
+                              </div>
+
+                              <div class="col-12">
+                                    <button type="button" id="tombol_create_shortlink" class="btn bg-gradient-warning">
+                                          Create
+                                    </button>
+                              </div>
+                        </form>
+                  </div>
+            </div>
+      </div>
+</div>
+<script src="{{url_for('static', filename='js/pages/Dashboard/Shortlink/create-shortlink.js')}}"></script>
+{% endblock %}

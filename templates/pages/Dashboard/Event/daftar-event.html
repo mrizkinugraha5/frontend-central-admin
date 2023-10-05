@@ -1,0 +1,135 @@
+{% extends "layout/template-dashboard.html" %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-lg-12 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="mb-3 text-dark">
+                            Jumlah Event
+                        </p>
+                        <h3 class="font-weight-bolder">
+                            {{data['jumlah_event']}}
+                        </h3>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-warning text-center rounded-circle">
+                            <i class="ni ni-tag text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h6>Daftar Event</h6>
+                <div class="row mb-3 mt-3">
+                    
+                    <!-- 🔎 Search Input -->
+                    <div class="col-lg-6 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Cari data berdasarkan kode" id="search-input">
+                        </div>
+                    </div>
+                    <!-- End Search Input -->
+                    
+                    <!-- Create Button -->
+                    <div class="col-lg-6 text-end">
+                        <a href="{{url_for('Dashboard.Event.buat')}}" class="btn bg-gradient-warning">
+                            <i class="fas fa-plus me-2" aria-hidden="true"></i>
+                            Buat Event Baru
+                        </a>
+                    </div>
+                    <!-- End Create Button -->
+                
+                </div>
+            </div>
+            <div class="card-body px-4 pt-0 pb-2">
+                <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0 table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-3">Kode</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-3">Status</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-3">Poster</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-3">Judul Webinar</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-3">Nama Pemateri</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-3">Waktu Mulai</th>
+                                <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 px-5">Waktu Berakhir</th>
+                                <th class="text-secondary opacity-7"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for event in data['daftar_event'] %}
+                            <tr class="table-row">
+                                <td class="px-3">
+                                    <span class="text-dark text-sm font-weight-bold keyword">{{ event['kode'] }}</span>
+                                </td>
+                                <td class="px-3">
+                                    {% if event['is_published'] == 1 %}
+                                    <span class="badge rounded-pill bg-warning">
+                                        Published
+                                    </span>
+                                    {% else %}
+                                    <span class="badge rounded-pill bg-light text-secondary opacity-6">
+                                        Unpublished
+                                    </span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-3 align-middle">
+                                    <img class="fit-image-50" src="{{event['poster']}}" alt="produk">
+                                </td>
+                                <td class="px-3 align-middle">
+                                    <span class="text-secondary text-sm font-weight-bold">{{event['nama']}}</span>
+                                </td>
+                                <td class="px-3 align-middle">
+                                    <span class="text-secondary text-sm font-weight-bold">{{event['nama_pemateri']}}</span>
+                                </td>
+                                <td class="px-3 align-middle">
+                                    <span class="text-secondary text-sm font-weight-bold">{{event['waktu_mulai']}}</span>
+                                </td>
+                                <td class="px-3 align-middle">
+                                    <span class="harga text-secondary text-sm font-weight-bold">{{event['waktu_berakhir']}}</span>
+                                </td>
+                                <td class="px-5 align-middle">
+                                    <a href="{{ url_for('Dashboard.Event.kehadiran', kode=event['kode'])}}" class="btn btn-warning font-weight-bold text-xs ">
+                                        Kehadiran
+                                    </a>
+                                    <a href="{{ url_for('Dashboard.Event.detail', kode=event['kode'] )}}" class="btn btn-dark font-weight-bold text-xs">
+                                        Lihat Detail
+                                    </a>
+                                    {% if event['is_published'] == 1 %}
+                                        <a href="#" class="btn btn-light text-secondary font-weight-bold text-xs toggle-status-button" data-action="unpublish" data-kode-event="{{ event['kode'] }}" data-judul-event="{{ event['nama'] }}" data-email-narasumber="{{ event['email'] }}">
+                                            <i class="fas fa-cloud-arrow-down"></i>
+                                            Unpublish
+                                        </a>
+                                    {% else %}
+                                        <a href="#" class="btn btn-warning font-weight-bold text-xs toggle-status-button" data-action="publish" data-kode-event="{{ event['kode'] }}" data-judul-event="{{ event['nama'] }}" data-email-narasumber="{{ event['email'] }}">
+                                            <i class="fas fa-cloud-arrow-up"></i>
+                                            Publish
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="{{url_for('static', filename='vendor/string-similarity.min.js')}}"></script>
+<script type="module" src="{{url_for('static', filename='js/utilities.js')}}"></script>
+<script type="module" src="{{url_for('static', filename='js/pages/Dashboard/Event/daftar-event.js')}}"></script>
+<script src="{{url_for('static', filename='js/pages/Dashboard/Event/publisher.js')}}"></script>
+
+{% endblock %}

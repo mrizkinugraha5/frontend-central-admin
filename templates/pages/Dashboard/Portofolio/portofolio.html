@@ -1,0 +1,69 @@
+{% extends "layout/template-dashboard.html" %}
+{% block content %}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-header pb-0">
+                <h1 class="text-center">Portofolio</h1>
+                <div class="row mb-3 mt-3">
+                    
+                    
+                    <!--
+                    <div class="col-lg-3 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Pencarian..." id="search-input">
+                        </div>
+                    </div>
+                    -->
+                    
+                    <!--
+                    <div class="col-lg-6">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            Semua Kategori
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Artificial Intelligence</a></li>
+                                <li><a class="dropdown-item" href="#">Blockchain</a></li>
+                                <li><a class="dropdown-item" href="#">Cyber Security</a></li>
+                                <li><a class="dropdown-item" href="#">Data Science / Big Data</a></li>
+                                <li><a class="dropdown-item" href="#">Internet of Things / FPGA</a></li>
+                                <li><a class="dropdown-item" href="#">Mobile Programming</a></li>
+                                <li><a class="dropdown-item" href="#">Natural Language Processing</a></li>
+                                <li><a class="dropdown-item" href="#">Speech Processing</a></li>
+                                <li><a class="dropdown-item" href="#">Visual Recognition</a></li>
+                                <li><a class="dropdown-item" href="#">Web Programming</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <div class="container">
+                    <div class="row">
+                        {% for x in data %}
+                        <div class="col-4">
+                            <div class="card">
+                                <img src="{{x['thumbnail']}}" class="card-img-top" alt="Portofolio 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{x['judul']}}</h5>
+                                    <p class="card-text">{{x['deskripsi_singkat']}}</p>
+                                    <a href="{{url_for('Dashboard.Portofolio.detail', id=x['id'])}}" class="btn btn-primary">Lihat Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-secondary" type="button">Load More</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

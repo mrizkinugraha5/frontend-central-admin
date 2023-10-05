@@ -1,0 +1,40 @@
+{% extends "layout/template-dashboard.html" %}
+{% block content %}
+<h1 class="text-center">Kehadiran</h1> 
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body p-5">
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Opsi</th>
+                                </tr>
+                            </thead>
+                            {% for x in data %}
+                            <tbody>
+                                <tr>
+                                    <td>{{x['nama_peserta']}} </td>
+                                    <td>{{x['email_peserta']}}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-warning font-weight-bold text-xs toggle-status-button">
+                                            Kirim Sertifikat
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="module" src="{{url_for('static', filename='vendor/string-similarity.min.js')}}"></script>
+<script type="module" src="{{url_for('static', filename='js/utilities.js')}}"></script>
+<script src="{{url_for('static', filename='js/pages/Dashboard/Event/send-sertifikat.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block meta %}
+        
+    {% endblock %}
+    {% include "layout/js-variable-store.html" %}
+    <link rel="apple-touch-icon" sizes="76x76" href="{{url_for('static', filename='img/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='img/favicon.ico')}}">
+    <title>{{ title }}</title>
+    <!-- Fonts and icons -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="{{url_for('static', filename='argon/css/nucleo-icons.css')}}" rel="stylesheet" />
+    <link href="{{url_for('static', filename='argon/css/nucleo-svg.css')}}" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/73299ebbff.js" crossorigin="anonymous"></script>
+    <link href="{{url_for('static', filename='argon/css/nucleo-svg.css')}}" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{{url_for('static', filename='argon/css/argon-dashboard.css')}}" rel="stylesheet" />
+    <link id="pagestyle" href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet" />
+    <!-- Apache Echarts -->
+    <script src="{{url_for('static', filename='argon/js/plugins/echarts.js')}}"></script>
+    <!-- Jquery -->
+    <script src="{{url_for('static', filename='argon/js/plugins/jquery.js')}}"></script>
+    <!-- Sweet Alert JS -->
+    <script src="{{url_for('static', filename='argon/js/plugins/sweetalert.min.js')}}"></script>
+
+</head>
+
+<body class="g-sidenav-show bg-gradient-info min-vh-100">
+
+    {% with navigation=navigation, active=active %}
+    {% include "components/sidenav.html" %}
+    {% endwith %}
+
+    <main class="main-content position-relative border-radius-lg ">
+        {% include "components/navbar.html" %}
+        <div class="container-fluid py-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!--   Core JS Files   -->
+    <script src="{{url_for('static', filename='argon/js/core/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='argon/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='argon/js/plugins/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{url_for('static', filename='argon/js/plugins/smooth-scrollbar.min.js')}}"></script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{{url_for('static', filename='argon/js/argon-dashboard.min.js')}}"></script>
+</body>
+
+</html>

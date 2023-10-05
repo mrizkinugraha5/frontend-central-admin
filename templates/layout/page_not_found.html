@@ -1,0 +1,29 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/layout/page_not_found.css')}}">
+    <title>Not Found</title>
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="text-center">
+            <h1>
+                <span class="fade-in" id="digit1">4</span>
+                <span class="fade-in" id="digit2">0</span>
+                <span class="fade-in" id="digit3">4</span>
+            </h1>
+            <h3 class="fadeIn">Page Not Found</h3>
+            <p>
+                Kami tidak dapat menemukan halaman yang kamu tuju
+            </p>
+            <br>
+            <a class="btn" href="{{url_for('Dashboard.index')}}">Kembali ke Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

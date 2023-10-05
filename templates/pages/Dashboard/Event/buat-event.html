@@ -1,0 +1,120 @@
+{% extends "layout/template-dashboard.html" %}
+{% block content %}
+<div class="row mb-4">
+      <div class="col">
+            <div class="card">
+                  <div class="card-body p-5">
+                        <div class="text-center">
+                              <h3>Detail Webinar</h3>
+                              <p class="form-text mb-5">
+                                    Data Webinar yang diinputkan melalui platform ini akan secara otomatis terpublish ke website <strong>centralai.id</strong>
+                              </p>
+                        </div>
+                        <form class="row g-4">
+                              <div class="col-lg-12">
+                                    <label for="nama" class="form-label">Judul Webinar</label>
+                                    <input type="text" class="form-control" id="nama">
+                              </div>
+
+                              <div class="col-lg-6">
+                                    <label for="nama_pemateri" class="form-label">Nama Pemateri 1</label>
+                                    <input type="text" class="form-control" id="nama_pemateri">
+                              </div>
+
+                              <div class="col-lg-6">
+                                    <label for="email" class="form-label">Email Pemateri 1</label>
+                                    <input type="text" class="form-control" id="email">
+                              </div>
+
+                              <div class="col-lg-6">
+                                    <label for="contact_whatsapp" class="form-label"> Contact Whatsapp</label>
+                                    <input type="text" class="form-control" id="contact_whatsapp">
+                              </div>
+
+                              <p>
+                                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Tambah Pemateri 2</button>
+                              </p>
+                              <div class="row">
+                                    <div class="col">
+                                          <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                                <div class="col-lg-12">
+                                                      <label for="nama_pemateri_2" class="form-label">Nama Pemateri 2</label>
+                                                      <input type="text" class="form-control" id="nama_pemateri_2">
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="col">
+                                          <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                                <div class="col-lg-12">
+                                                      <label for="email_2" class="form-label">Email Pemateri 2</label>
+                                                      <input type="text" class="form-control" id="email_2">
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+
+                              <div class="col-lg-4">
+                                    <label for="tanggal" class="form-label">Tanggal Webinar</label>
+                                    <input type="date" class="form-control" id="tanggal">
+                              </div>
+
+                              <div class="col-lg-4">
+                                    <label for="pilihan_waktu" class="form-label">Pilihan Waktu</label>
+                                    <select class="form-select" id="pilihan_waktu">
+                                          <option value="08.00 - 10.00">08.00 - 10.00</option>
+                                          <option value="08.30 - 10.30">08.30 - 10.30</option>
+                                          <option value="10.00 - 12.00">10.00 - 12.00</option>
+                                          <option value="12.30 - 14.30">12.30 - 14.30</option>
+                                          <option value="13.00 - 15.00">13.00 - 15.00</option>
+                                          <option value="16.00 - 18.00">16.00 - 18.00</option>
+                                          <option value="16.30 - 18.30">16.30 - 18.30</option>
+                                          <option value="19.00 - 21.00">19.00 - 21.00</option>
+                                          <option value="19.30 - 21.30">19.30 - 21.30</option>
+                                    </select>
+                              </div>
+
+                              <div class="col-12">
+                                    <label for="inputCity" class="form-label">Poster Webinar</label>
+                                    {% include 'components/image_input.html' %}
+                              </div>
+
+                              <div class="col-lg-6">
+                                    <label for="link_conference" class="form-label">Link Video Conference</label>
+                                    <input type="text" class="form-control" id="link_conference">
+                              </div>
+
+                              <div class="col-lg-6">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="text" class="form-control" id="password">
+                                    <div class="form-text">Masukkan password jika menggunakan platform tampil</div>
+                              </div>
+
+                              <div class="col-lg-4">
+                                    <label for="jenis" class="form-label">Kategori</label>
+                                    <select class="form-select" id="jenis">
+                                          <option value="softskill">Softskill</option>
+                                          <option value="hardskill">Hardskill</option>
+                                          <option value="centralclass">Central Class</option>
+                                    </select>
+                              </div>
+
+                              <div class="col-12 mb-5">
+                                    <label for="deskripsi" class="form-label">Deskripsi Webinar</label>
+                                    <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="8"></textarea>
+                                    <div class="form-text">
+                                          Berikan penjelasan singkat tentang apa saja yang nanti akan dibahas pada webinar
+                                    </div>
+                              </div>
+
+                              <div class="col-12">
+                                    <button type="button" id="tombol_buat_webinar" class="btn bg-gradient-warning">
+                                          Buat Webinar Baru
+                                    </button>
+                              </div>
+                        </form>
+                  </div>
+            </div>
+      </div>
+</div>
+<script src="{{url_for('static', filename='js/pages/Dashboard/Event/buat-event.js')}}"></script>
+{% endblock %}

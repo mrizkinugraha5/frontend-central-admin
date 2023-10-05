@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="{{url_for('static', filename='css/components/image-input.css')}}">
+<div class="image-input">
+    <div class="img-preview img-fluid overflow-hidden text-center">
+            {% if show_image %}
+                <img class="mb-3" id="preview-image" src="{{image_src}}" alt="data" style="opacity: 0.8; max-width:100%; height:300px; object-fit: cover;">
+            {% endif %}
+        </div>
+    <div class="dropzone-wrapper">
+        <div class="dropzone-desc">
+            <i class="ni ni-cloud-upload-96 fs-3"></i>
+            <p class="form-text">Drag & Drop Gambar disini</p>
+        </div>
+        <input type="file" name="fileInput" id="fileInput" class="dropzone">
+    </div>
+    <div class="result-container">
+        <pre><code class="fs-5" id="result"></code></pre>
+    </div>
+    <div class="row">
+        <div class="col text-end">
+            <button type="reset" id="reset_button" class="btn bg-gradient-danger">
+                <i class="fa-solid fa-trash-can"></i>
+                Hapus Foto
+            </button>
+        </div>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/components/image-input.js')}}"></script>

@@ -1,0 +1,146 @@
+{% extends "layout/template-dashboard.html" %}
+{% block content %}
+<div class="row mb-4">
+      <div class="col-lg-8 mb-xl-0 mb-4">
+            <div class="card">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <div class="col">
+                                    <div class="text-center mb-5">
+                                          <img class="rounded" width="450" src="{{ data['event']['poster'] }}" alt="poster" />
+                                    </div>
+                                    <div class="p-3">
+                                          <h2 class="m-0" id="judul">
+                                                {{ data['event']['nama'] }}
+                                          </h2>
+                                          <h5 id="narasumber">
+                                                Narasumber : {{ data['event']['nama_pemateri'] }}
+                                          </h5>
+                                          <p class="text-dark" id="deskripsi">
+                                                {{ data['event']['deskripsi'] }}
+                                          </p>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+      <div class="col-lg-4 mb-xl-0 mb-4">
+            <div class="card mb-3">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <div class="col">
+                                    <h4>Waktu Kegiatan</h4>
+                                    <div class="text-start">
+                                          <div class="fw-bold">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                                Mulai
+                                          </div>
+                                          <p>
+                                                {{ data['event']['waktu_mulai'] }}
+                                          </p>
+                                    </div>
+
+                                    <div class="text-start">
+                                          <div class="fw-bold">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                                Selesai
+                                          </div>
+                                          <p>
+                                                {{ data['event']['waktu_berakhir'] }}
+                                          </p>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="card mb-3">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <div class="col">
+                                    <h4>Platform Video Conference</h4>
+                                    <a href="{{ data['event']['link_conference'] }}" class="btn bg-gradient-warning">
+                                          <i class="fa-solid fa-video me-2"></i>
+                                          Join Room
+                                    </a>
+                                    {% if data['event']['password'] != None %}
+                                    <button class="btn btn-outline-secondary" id="show_password_button" data-nama-webinar="{{ data['event']['nama'] }}" data-password="{{ data['event']['password'] }}">
+                                          <i class="fa-solid fa-unlock me-2"></i>
+                                          Show Password
+                                    </button>
+                                    {% endif %}
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            {% if data['event']['contact_whatsapp'] != None %}
+            <div class="card mb-3">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <div class="col">
+                                    <h4>Kontak Narasumber</h4>
+                                    {% if data['event']['contact_whatsapp'] != None %}
+                                    <a target="_blank" href="https://{{ data['event']['contact_whatsapp'] }}" class="btn btn-outline-success">
+                                          <i class="fs-5 fa-brands fa-whatsapp me-2"></i>
+                                          Whatsapp
+                                    </a>
+                                    {% endif %}
+                                    {% if data['event']['email'] != None %}
+                                    <a href="mailto:{{ data['event']['email'] }}" class="btn btn-outline-dark">
+                                          <i class="fs-5 fa-regular fa-envelope me-2"></i>
+                                          Email 1
+                                    </a>
+                                    {% endif %}
+
+                                    {% if data['event']['email_2'] != None %}
+                                    <a href="mailto:{{ data['event']['email_2'] }}" class="btn btn-outline-dark">
+                                          <i class="fs-5 fa-regular fa-envelope me-2"></i>
+                                          Email 2
+                                    </a>
+                                    {% endif %}
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            {% endif %}
+            <div class="card mb-3">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <div class="col">
+                                    <h4>Form Kehadiran</h4>
+                                    <a href="https://centralai.id/event/kehadiran/{{ data['event']['kode_rahasia'] }}">
+                                          https://centralai.id/event/kehadiran/{{ data['event']['kode_rahasia'] }}
+                                    </a>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="card mb-3">
+                  <div class="card-body p-4">
+                        <div class="row">
+                              <div class="col">
+                                    <h4>Action</h4>
+                                    <button class="btn bg-gradient-danger" id="hapus_button" data-kode-event="{{ data['event']['kode'] }}">
+                                          <i class="fa-solid fa-trash-can me-2"></i>
+                                          Hapus Event
+                                    </button>
+                                    {% if data['event']['is_published'] == 1 %}
+                                        <a href="#" class="btn btn-light text-secondary font-weight-bold toggle-status-button" data-action="unpublish" data-kode-event="{{ data['event']['kode'] }}" data-judul-event="{{ data['event']['nama'] }}" data-email-narasumber="{{ data['event']['email'] }}">
+                                            <i class="fas fa-cloud-arrow-down"></i>
+                                            Unpublish
+                                        </a>
+                                    {% else %}
+                                        <a href="#" class="btn btn-warning font-weight-bold toggle-status-button" data-action="publish" data-kode-event="{{ data['event']['kode'] }}" data-judul-event="{{ data['event']['nama'] }}" data-email-narasumber="{{ data['event']['email'] }}">
+                                            <i class="fas fa-cloud-arrow-up"></i>
+                                            Publish
+                                        </a>
+                                    {% endif %}
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>
+<script src="{{url_for('static', filename='js/pages/Dashboard/Event/detail-event.js')}}"></script>
+<script src="{{url_for('static', filename='js/pages/Dashboard/Event/publisher.js')}}"></script>
+{% endblock %}
